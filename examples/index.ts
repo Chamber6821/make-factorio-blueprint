@@ -1,10 +1,10 @@
-import Blueprint            from "./Blueprint"
-import makeConnection       from "./connection/makeConnection"
-import ArithmeticCombinator from "./entities/ArithmeticCombinator"
-import ConstantCombinator   from "./entities/ConstantCombinator"
-import Position             from "./Position"
-import createLetterSignal   from "./utils/createLetterSignal"
-import encode               from "./utils/encode"
+import Blueprint            from "../src/Blueprint"
+import makeConnection       from "../src/connection/makeConnection"
+import ArithmeticCombinator from "../src/entities/ArithmeticCombinator"
+import ConstantCombinator   from "../src/entities/ConstantCombinator"
+import Position             from "../src/Position"
+import createLetterSignal   from "../src/utils/createLetterSignal"
+import encode               from "../src/utils/encode"
 
 
 const blueprint = new Blueprint("Mine", [createLetterSignal("A")])
