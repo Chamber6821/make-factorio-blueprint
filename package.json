@@ -1,12 +1,17 @@
 {
   "name": "make-factorio-blueprint",
   "description": "API for make Factorio blueprints",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": {
     "name": "Ivan Osinin",
     "email": "vania.osinin@yandex.ru"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
   "scripts": {
     "clean": "shx rm -rf dist",
     "build": "yarn clean && tsc --project tsconfig.build.json",
