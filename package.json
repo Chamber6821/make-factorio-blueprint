@@ -1,7 +1,7 @@
 {
   "name": "make-factorio-blueprint",
   "description": "API for make Factorio blueprints",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "author": {
     "name": "Ivan Osinin",
@@ -10,11 +10,10 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "./dist/*"
+    "./dist"
   ],
   "exports": {
-    ".": "./dist",
-    "./package.json": "./package.json"
+    "./*": "./dist/*"
   },
   "scripts": {
     "clean": "shx rm -rf dist",
