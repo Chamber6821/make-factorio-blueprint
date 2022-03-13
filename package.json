@@ -1,20 +1,34 @@
 {
   "name": "make-factorio-blueprint",
   "description": "API for make Factorio blueprints",
-  "version": "0.0.9",
+  "version": "0.0.19",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chamber6821/make-factorio-blueprint.git"
+  },
   "author": {
     "name": "Ivan Osinin",
     "email": "vania.osinin@yandex.ru"
   },
   "main": "./index.js",
   "types": "./index.d.ts",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "package.json"
+  ],
   "scripts": {
     "start": "nodemon",
     "test": "jest",
-    "build": "yarn clean && tsc --project tsconfig.build.json",
+    "pub": "yarn build && yarn publish dist --no-git-tag-version",
+    "pub:major": "yarn pub --major",
+    "pub:minor": "yarn pub --minor",
+    "pub:patch": "yarn pub --patch",
+    "postversion": "shx cp package.json ..",
+    "build": "yarn clean && tsc --project tsconfig.build.json && shx cp package.json dist",
     "clean": "shx rm -rf dist",
-    "prepublish": "yarn build && cp package.json dist && cd dist"
+    "my-super-test": "echo Hi && echo"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
