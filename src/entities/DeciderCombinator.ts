@@ -38,12 +38,12 @@ export default class DeciderCombinator implements Combinator<Behavior> {
         readonly entity_number: EntityId
     ) {}
 
-    setLeft(value?: Signal) {
-        this.setOptionalSignal("first_signal")
+    setLeft(value: Signal | undefined) {
+        this.setOptionalSignal("first_signal", value)
         return this
     }
 
-    setRight(value?: Signal | number) {
+    setRight(value: Signal | number | undefined) {
         delete this.control_behavior.decider_conditions.second_signal
         delete this.control_behavior.decider_conditions.second_constant
 
@@ -61,12 +61,12 @@ export default class DeciderCombinator implements Combinator<Behavior> {
         return this
     }
 
-    setOutput(value?: Signal) {
-        this.setOptionalSignal("output_signal")
+    setOutput(value: Signal | undefined) {
+        this.setOptionalSignal("output_signal", value)
         return this
     }
 
-    private setOptionalSignal(signalKey: "first_signal" | "second_signal" | "output_signal", value?: Signal) {
+    private setOptionalSignal(signalKey: "first_signal" | "second_signal" | "output_signal", value: Signal | undefined) {
         if (value) {
             this.control_behavior.decider_conditions[signalKey] = value
         } else {

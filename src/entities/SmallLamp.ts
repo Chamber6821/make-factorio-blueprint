@@ -43,12 +43,12 @@ export default class SmallLamp implements Combinator {
         return this
     }
 
-    setLeft(value?: Signal) {
+    setLeft(value: Signal | undefined) {
         this.setOptionalSignal("first_signal", value)
         return this
     }
 
-    setRight(value?: Signal | number) {
+    setRight(value: Signal | number | undefined) {
         delete this.control_behavior.circuit_condition.second_signal
         delete this.control_behavior.circuit_condition.constant
 
@@ -66,7 +66,7 @@ export default class SmallLamp implements Combinator {
         return this
     }
 
-    private setOptionalSignal(signalKey: "first_signal" | "second_signal", value?: Signal) {
+    private setOptionalSignal(signalKey: "first_signal" | "second_signal", value: Signal | undefined) {
         if (value) {
             this.control_behavior.circuit_condition[signalKey] = value
         } else {
