@@ -8,18 +8,17 @@ import { EntityId }    from "./Entity"
 type Comparator = ">" | "<" | "=" | "≥" | "≤" | "≠"
 
 type Behavior = {
-    decider_conditions: {
-        first_signal?: Signal,
-        second_signal?: Signal,
-        second_constant?: number,
-        output_signal?: Signal,
-
+    circuit_condition: {
+        first_signal?: Signal
+        second_signal?: Signal
+        constant?: number
         comparator: Comparator
     }
+    use_colors: boolean
 }
 
-export default class DeciderCombinator implements Combinator<Behavior> {
-    readonly name = "decider-combinator"
+export default class SmallLamp implements Combinator {
+    readonly name = "small-lamp"
     position = new Position(0, 0)
     direction = 0
 
@@ -29,14 +28,20 @@ export default class DeciderCombinator implements Combinator<Behavior> {
     }
 
     readonly control_behavior: Behavior = {
-        decider_conditions: {
+        circuit_condition: {
             comparator: "<"
-        }
+        },
+        use_colors: false
     }
 
     constructor(
         readonly entity_number: EntityId
     ) {}
+
+    useColors(use: boolean = true) {
+        this.control_behavior.use_colors = use
+        return this
+    }
 
     setLeft(value: Signal | undefined) {
         this.setOptionalSignal("first_signal", value)
@@ -44,11 +49,11 @@ export default class DeciderCombinator implements Combinator<Behavior> {
     }
 
     setRight(value: Signal | number | undefined) {
-        delete this.control_behavior.decider_conditions.second_signal
-        delete this.control_behavior.decider_conditions.second_constant
+        delete this.control_behavior.circuit_condition.second_signal
+        delete this.control_behavior.circuit_condition.constant
 
         if (typeof value === "number") {
-            this.control_behavior.decider_conditions.second_constant = value
+            this.control_behavior.circuit_condition.constant = value
         } else {
             this.setOptionalSignal("second_signal", value)
         }
@@ -57,20 +62,15 @@ export default class DeciderCombinator implements Combinator<Behavior> {
     }
 
     setComparator(comparator: Comparator) {
-        this.control_behavior.decider_conditions.comparator = comparator
+        this.control_behavior.circuit_condition.comparator = comparator
         return this
     }
 
-    setOutput(value: Signal | undefined) {
-        this.setOptionalSignal("output_signal", value)
-        return this
-    }
-
-    private setOptionalSignal(signalKey: "first_signal" | "second_signal" | "output_signal", value: Signal | undefined) {
+    private setOptionalSignal(signalKey: "first_signal" | "second_signal", value: Signal | undefined) {
         if (value) {
-            this.control_behavior.decider_conditions[signalKey] = value
+            this.control_behavior.circuit_condition[signalKey] = value
         } else {
-            delete this.control_behavior.decider_conditions[signalKey]
+            delete this.control_behavior.circuit_condition[signalKey]
         }
     }
 }

@@ -39,12 +39,12 @@ export default class ArithmeticCombinator implements Combinator<Behavior> {
         readonly entity_number: EntityId
     ) {}
 
-    setLeft(value?: Signal | number) {
+    setLeft(value: Signal | number | undefined) {
         this.setOperand("first_signal", "first_constant", value)
         return this
     }
 
-    setRight(value?: Signal | number) {
+    setRight(value: Signal | number | undefined) {
         this.setOperand("second_signal", "second_constant", value)
         return this
     }
@@ -54,7 +54,7 @@ export default class ArithmeticCombinator implements Combinator<Behavior> {
         return this
     }
 
-    setOutput(value?: Signal) {
+    setOutput(value: Signal | undefined) {
         if (value) {
             this.control_behavior.arithmetic_conditions.output_signal = value
         } else {
@@ -66,7 +66,7 @@ export default class ArithmeticCombinator implements Combinator<Behavior> {
 
     private setOperand(signalKey: "first_signal" | "second_signal",
                        constantKey: "first_constant" | "second_constant",
-                       value?: Signal | number) {
+                       value: Signal | number | undefined) {
         delete this.control_behavior.arithmetic_conditions[signalKey]
         delete this.control_behavior.arithmetic_conditions[constantKey]
 
