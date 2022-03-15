@@ -1,7 +1,7 @@
 {
   "name": "make-factorio-blueprint",
   "description": "API for make Factorio blueprints",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
