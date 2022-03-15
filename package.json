@@ -1,7 +1,7 @@
 {
   "name": "make-factorio-blueprint",
   "description": "API for make Factorio blueprints",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "scripts": {
     "start": "nodemon",
     "test": "jest",
-    "pub": "yarn build:all && yarn publish dist --no-git-tag-version",
+    "pub": "yarn build && yarn publish dist/src --no-git-tag-version",
     "pub:major": "yarn pub --major",
     "pub:minor": "yarn pub --minor",
     "pub:patch": "yarn pub --patch",
