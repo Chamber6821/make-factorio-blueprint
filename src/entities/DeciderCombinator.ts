@@ -11,7 +11,7 @@ type Behavior = {
     decider_conditions: {
         first_signal?: Signal,
         second_signal?: Signal,
-        second_constant?: number,
+        constant?: number,
         output_signal?: Signal,
 
         comparator: Comparator
@@ -45,10 +45,10 @@ export default class DeciderCombinator implements Combinator<Behavior> {
 
     setRight(value: Signal | number | undefined) {
         delete this.control_behavior.decider_conditions.second_signal
-        delete this.control_behavior.decider_conditions.second_constant
+        delete this.control_behavior.decider_conditions.constant
 
         if (typeof value === "number") {
-            this.control_behavior.decider_conditions.second_constant = value
+            this.control_behavior.decider_conditions.constant = value
         } else {
             this.setOptionalSignal("second_signal", value)
         }
