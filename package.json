@@ -27,7 +27,8 @@
     "pub:patch": "yarn pub --patch",
     "postversion": "shx cp package.json ../..",
     "build": "yarn clean && tsc --project tsconfig.build.json && shx cp package.json dist/src",
-    "clean": "shx rm -rf dist"
+    "clean": "shx rm -rf dist",
+    "push": "git checkout master && git push && git push --tags && git checkout develop"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
