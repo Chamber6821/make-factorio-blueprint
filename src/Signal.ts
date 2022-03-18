@@ -8,6 +8,8 @@ type Color = "red" | "green" | "blue" | "yellow" | "pink" | "cyan" | "white" | "
 
 type Special = "check" | "info" | "dot"
 
+type Wildcard = "everything" | "each" | "anything"
+
 export default class Signal {
     static virtual(postName: Letter | Digit | Color | Special) {
         return new Signal("virtual", `signal-${postName}`)
