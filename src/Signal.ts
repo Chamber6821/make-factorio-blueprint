@@ -11,7 +11,7 @@ type Special = "check" | "info" | "dot"
 type Wildcard = "everything" | "each" | "anything"
 
 export default class Signal {
-    static virtual(postName: Letter | Digit | Color | Special) {
+    static virtual(postName: Letter | Digit | Color | Special | Wildcard) {
         return new Signal("virtual", `signal-${postName}`)
     }
 
