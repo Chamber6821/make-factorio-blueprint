@@ -3,11 +3,11 @@ import makeConnection       from "../src/connection/makeConnection"
 import ArithmeticCombinator from "../src/entities/ArithmeticCombinator"
 import ConstantCombinator   from "../src/entities/ConstantCombinator"
 import Position             from "../src/Position"
-import createLetterSignal   from "../src/utils/createLetterSignal"
+import Signal               from "../src/Signal"
 import encode               from "../src/utils/encode"
 
 
-const blueprint = new Blueprint("Mine", [createLetterSignal("A")])
+const blueprint = new Blueprint("Mine", [Signal.virtual("A")])
 
 const arithmetic = blueprint.createEntity(id => new ArithmeticCombinator(id))
 arithmetic.position = new Position(1.5, 0)
@@ -17,11 +17,11 @@ const constant = blueprint.createEntity(id => new ConstantCombinator(id))
 constant.position = new Position(0, 0)
 constant.direction = 2
 
-constant.addFilter(createLetterSignal("A"), 10)
+constant.addFilter(Signal.virtual("A"), 10)
 
-arithmetic.setLeft(createLetterSignal("A"))
+arithmetic.setLeft(Signal.virtual("A"))
 arithmetic.setRight(1)
-arithmetic.setOutput(createLetterSignal("S"))
+arithmetic.setOutput(Signal.virtual("S"))
 
 makeConnection()
     .from(constant, "1")
